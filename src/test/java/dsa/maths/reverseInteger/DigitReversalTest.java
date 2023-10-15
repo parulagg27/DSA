@@ -1,42 +1,86 @@
 package dsa.maths.reverseInteger;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class DigitReversalTest {
 
-    @Test
-    void shouldReverseGivenPositiveInteger() {
-        int output = DigitReversal.reverseNumberByModulus10AndStringConcat(12345);
+    @Nested
+    class reverseNumberByModulus10AndStringConcat {
 
-        Assertions.assertEquals(54321, output);
+        @Test
+        void shouldReverseGivenPositiveInteger() {
+            int output = DigitReversal.reverseNumberByModulus10AndStringConcat(12345);
+
+            Assertions.assertEquals(54321, output);
+        }
+
+        @Test
+        void shouldReturn0IfGivenIntegerIsZero() {
+            int output = DigitReversal.reverseNumberByModulus10AndStringConcat(0);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void shouldReverseGivenNegativeInteger() {
+            int output = DigitReversal.reverseNumberByModulus10AndStringConcat(-12345);
+
+            Assertions.assertEquals(-54321, output);
+        }
+
+        @Test
+        void shouldNotReverseMaxIntToPreventIntOverflow() {
+            int output = DigitReversal.reverseNumberByModulus10AndStringConcat(Integer.MAX_VALUE);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void shouldNotReverseMinInt() {
+            int output = DigitReversal.reverseNumberByModulus10AndStringConcat(Integer.MIN_VALUE); // -2147483648
+
+            Assertions.assertEquals(0, output);
+        }
     }
 
-    @Test
-    void shouldReturn0IfGivenIntegerIsZero() {
-        int output = DigitReversal.reverseNumberByModulus10AndStringConcat(0);
+    @Nested
+    class reverseNumberByModulus10AndNumberFormation {
 
-        Assertions.assertEquals(0, output);
-    }
+        @Test
+        void shouldReverseGivenPositiveInteger() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(12345);
 
-    @Test
-    void shouldReverseGivenNegativeInteger() {
-        int output = DigitReversal.reverseNumberByModulus10AndStringConcat(-12345);
+            Assertions.assertEquals(54321, output);
+        }
 
-        Assertions.assertEquals(-54321, output);
-    }
+        @Test
+        void shouldReturn0IfGivenIntegerIsZero() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(0);
 
-    @Test
-    void shouldNotReverseMaxIntToPreventIntOverflow() {
-        int output = DigitReversal.reverseNumberByModulus10AndStringConcat(Integer.MAX_VALUE);
+            Assertions.assertEquals(0, output);
+        }
 
-        Assertions.assertEquals(Integer.MAX_VALUE, output);
-    }
+        @Test
+        void shouldReverseGivenNegativeInteger() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(-12345);
 
-    @Test
-    void shouldReverseMinInt() {
-        int output = DigitReversal.reverseNumberByModulus10AndStringConcat(Integer.MIN_VALUE); // -2147483648
+            Assertions.assertEquals(-54321, output);
+        }
 
-        Assertions.assertEquals(Integer.MIN_VALUE, output);
+        @Test
+        void shouldNotReverseMaxIntToPreventIntOverflow() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(Integer.MAX_VALUE);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void shouldNotReverseMinInt() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(Integer.MIN_VALUE); // -2147483648
+
+            Assertions.assertEquals(0, output);
+        }
     }
 }
