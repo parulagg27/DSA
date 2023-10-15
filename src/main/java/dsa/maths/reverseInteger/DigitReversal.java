@@ -28,19 +28,17 @@ public class DigitReversal {
 
     //TODO: better approach as number formation from digits automatically handles negative value scenario
     public static int reverseNumberByModulus10AndNumberFormation(int number) {
-        int quotient = number;
         int reversedNumber = 0;
 
         if (number == 0) {
             return 0;
         }
 
-        while(quotient != 0) {
-            int remainder = quotient % 10;
-            quotient = quotient / 10;
-            if (reversedNumber >= Integer.MAX_VALUE || reversedNumber <= Integer.MIN_VALUE){
-                return 0;
-            }
+        while(number != 0) {
+            int remainder = number % 10;
+            number = number / 10;
+            if (reversedNumber > (Integer.MAX_VALUE/10) || (reversedNumber == Integer.MAX_VALUE/10 && remainder > 7)) return 0;
+            if (reversedNumber < (Integer.MIN_VALUE/10) || (reversedNumber == Integer.MIN_VALUE/10 && remainder < -8)) return 0;
             reversedNumber = (reversedNumber * 10) + remainder;
         }
         return reversedNumber;

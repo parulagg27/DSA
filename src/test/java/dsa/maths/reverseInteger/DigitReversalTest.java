@@ -82,5 +82,19 @@ class DigitReversalTest {
 
             Assertions.assertEquals(0, output);
         }
+
+        @Test
+        void shouldNotReverseIntWithReversedPositiveNumberOutsideIntRange() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(1534236469);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void shouldNotReverseIntWithReversedNegativeNumberOutsideIntRange() {
+            int output = DigitReversal.reverseNumberByModulus10AndNumberFormation(-2146384742);
+
+            Assertions.assertEquals(0, output);
+        }
     }
 }
