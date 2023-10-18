@@ -19,7 +19,7 @@ class GreatestCommonDivisorTest {
         void shouldReturnGCDas0IfAnyNumberIsZero() {
             int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZero(100, 0);
 
-            Assertions.assertEquals(0, output);
+            Assertions.assertEquals(100, output);
         }
 
         @Test
@@ -38,6 +38,7 @@ class GreatestCommonDivisorTest {
 
         @Test
         void shouldReturnGcdForPositiveAndNegativeInt() {
+            //TODO:  GCD (greatest common divisor) is always a non-negative integer even if one or both int are negative
             int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZero(12, -12);
 
             Assertions.assertEquals(12, output);
@@ -64,7 +65,7 @@ class GreatestCommonDivisorTest {
         void shouldReturnGCDas0IfAnyNumberIsZero() {
             int output = GreatestCommonDivisor.findGCDByBruteForce(100, 0);
 
-            Assertions.assertEquals(0, output);
+            Assertions.assertEquals(100, output);
         }
 
         @Test
