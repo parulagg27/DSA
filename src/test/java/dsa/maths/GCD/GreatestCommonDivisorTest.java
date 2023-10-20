@@ -16,7 +16,7 @@ class GreatestCommonDivisorTest {
         }
 
         @Test
-        void shouldReturnGCDas0IfAnyNumberIsZero() {
+        void shouldReturnGCDasNumberItselfIfOtherNumberIsZero() {
             int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZero(100, 0);
 
             Assertions.assertEquals(100, output);
@@ -62,7 +62,7 @@ class GreatestCommonDivisorTest {
         }
 
         @Test
-        void shouldReturnGCDas0IfAnyNumberIsZero() {
+        void shouldReturnGCDasNumberItselfIfOtherNumberIsZero() {
             int output = GreatestCommonDivisor.findGCDByBruteForce(100, 0);
 
             Assertions.assertEquals(100, output);
@@ -97,4 +97,50 @@ class GreatestCommonDivisorTest {
         }
     }
 
+    @Nested
+    class gcdByEuclideanFormula {
+
+        @Test
+        void getGCDOf0and0(){
+            int output = GreatestCommonDivisor.gcdByEuclideanFormula(0, 0);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void shouldReturnGCDasNumberItselfIfOtherNumberIsZero() {
+            int output = GreatestCommonDivisor.gcdByEuclideanFormula(100, 0);
+
+            Assertions.assertEquals(100, output);
+        }
+
+        @Test
+        void shouldReturnGcdForEvenNumbers() {
+            int output = GreatestCommonDivisor.gcdByEuclideanFormula(12, 20);
+
+            Assertions.assertEquals(4, output);
+        }
+
+        @Test
+        void shouldReturnGcdForOddNumbers() {
+            int output = GreatestCommonDivisor.gcdByEuclideanFormula(3, 17);
+
+            Assertions.assertEquals(1, output);
+        }
+
+        @Test
+        void shouldReturnGcdForPositiveAndNegativeInt() {
+            int output = GreatestCommonDivisor.gcdByEuclideanFormula(12, -12);
+
+            Assertions.assertEquals(12, output);
+        }
+
+        @Test
+        void shouldReturnGcdForIntMaxAndIntMin() {
+            //TODO: limitation of this approach: output is stackoverflow as Min value will always be less even if absolute value is more. Taking absolute of Int.MIN_VALUE will also not work since it will be integer out of range
+            int output = GreatestCommonDivisor.gcdByEuclideanFormula(Integer.MAX_VALUE, Integer.MIN_VALUE + 1);
+
+            Assertions.assertEquals(2147483647, output);
+        }
+    }
 }

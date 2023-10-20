@@ -1,30 +1,32 @@
 package dsa.maths.GCD;
 
+/**
+ * GCD or HCF: largest positive number that can divide both the given numbers
+ * This can be used to determine min. fraction for given fraction. Ex: 6/4 = (6/GCD(6,4)) / (4/GCD(6,4))
+ */
 public class GreatestCommonDivisor {
 
     /**
-     * Time complexity: ~O(n1 % n2)
+     * Time complexity: O(log(min(n1, n2)))
      * Space complexity: O(1)
      */
     public static int findGCDByDivisionTillRemainderZero(int n1, int n2) {
         if (n1 == 0) return n2;
         if (n2 == 0) return n1;
 
-        int divident = Math.max(n1, n2);
-        int divisor = Math.min(n1, n2);
         while (true) {
-            int remainder = divident % divisor;
+            int remainder = n1 % n2;
             if (remainder == 0) {
                 break;
             }
-            divident = divisor;
-            divisor = remainder;
+            n1 = n2;
+            n2 = remainder;
         }
-        return Math.abs(divisor);
+        return Math.abs(n2);
     }
 
     /**
-     * Time complexity: O(n)
+     * Time complexity: O(min(|n1|, |n2|))
      * Space complexity: O(1)
      */
     public static int findGCDByBruteForce(int n1, int n2) {
@@ -40,5 +42,15 @@ public class GreatestCommonDivisor {
             }
         }
         return gcd;
+    }
+
+    /**
+     * Time complexity: O(log(min(n1, n2))) - because min value means - max. number of divisions. After one step, the larger number is reduced to roughly half of its original size and so on.
+     * Space complexity: O(log(min(n1, n2))) - space taken in stackTrace for recursive call + space taken by base condition
+     */
+    public static int gcdByEuclideanFormula(int n1, int n2) {
+        if (n2 == 0) return Math.abs(n1);
+        //TODO: n1 > n2 comparison not needed since after first division, number gets swapped
+        return gcdByEuclideanFormula(n2, n1 % n2);
     }
 }
