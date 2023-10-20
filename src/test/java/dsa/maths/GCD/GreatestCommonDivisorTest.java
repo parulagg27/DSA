@@ -53,6 +53,52 @@ class GreatestCommonDivisorTest {
     }
 
     @Nested
+    class findGCDByDivisionTillRemainderZeroV2 {
+        @Test
+        void getGCDOf0and0(){
+            int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZeroV2(0, 0);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void shouldReturnGCDasNumberItselfIfOtherNumberIsZero() {
+            int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZeroV2(100, 0);
+
+            Assertions.assertEquals(100, output);
+        }
+
+        @Test
+        void shouldReturnGcdForEvenNumbers() {
+            int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZeroV2(12, 20);
+
+            Assertions.assertEquals(4, output);
+        }
+
+        @Test
+        void shouldReturnGcdForOddNumbers() {
+            int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZeroV2(3, 17);
+
+            Assertions.assertEquals(1, output);
+        }
+
+        @Test
+        void shouldReturnGcdForPositiveAndNegativeInt() {
+            //TODO:  GCD (greatest common divisor) is always a non-negative integer even if one or both int are negative
+            int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZeroV2(12, -12);
+
+            Assertions.assertEquals(12, output);
+        }
+
+        @Test
+        void shouldReturnGcdForIntMaxAndIntMin() {
+            int output = GreatestCommonDivisor.findGCDByDivisionTillRemainderZeroV2(Integer.MAX_VALUE, Integer.MIN_VALUE + 1);
+
+            Assertions.assertEquals(Integer.MAX_VALUE, output);
+        }
+    }
+
+    @Nested
     class findGCDByBruteForce {
         @Test
         void getGCDOf0and0(){

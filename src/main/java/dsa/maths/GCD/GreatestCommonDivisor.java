@@ -26,6 +26,22 @@ public class GreatestCommonDivisor {
     }
 
     /**
+     * This is same as findGCDByDivisionTillRemainderZero with simplified code, i.e., remainder is directly updated to n1, n2 instead of having new variable
+     * Time complexity: O(log(min(n1, n2)))
+     * Space complexity: O(1)
+     */
+    public static int findGCDByDivisionTillRemainderZeroV2(int n1, int n2) {
+        n1 = Math.abs(n1);
+        n2 = Math.abs(n2);
+        while (n1 > 0 && n2 > 0) {
+            if (n1 > n2) n1 = n1 % n2;
+            else n2 = n2 % n1;
+        }
+        if (n2 == 0) return n1;
+        return n1;
+    }
+
+    /**
      * Time complexity: O(min(|n1|, |n2|))
      * Space complexity: O(1)
      */
