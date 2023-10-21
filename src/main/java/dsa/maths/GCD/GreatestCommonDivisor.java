@@ -26,7 +26,8 @@ public class GreatestCommonDivisor {
     }
 
     /**
-     * This is same as findGCDByDivisionTillRemainderZero with simplified code, i.e., remainder is directly updated to n1, n2 instead of having new variable
+     * This is same as findGCDByDivisionTillRemainderZero with simplified code, i.e.,
+     * remainder is directly updated to n1, n2 instead of having new variable
      * Time complexity: O(log(min(n1, n2)))
      * Space complexity: O(1)
      */
@@ -61,7 +62,8 @@ public class GreatestCommonDivisor {
     }
 
     /**
-     * Time complexity: O(log(min(n1, n2))) - because min value means - max. number of divisions. After one step, the larger number is reduced to roughly half of its original size and so on.
+     * Time complexity: O(log(min(n1, n2))) - because min value means - max. number of divisions.
+     * After one step, the larger number is reduced to roughly half of its original size and so on.
      * Space complexity: O(log(min(n1, n2))) - space taken in stackTrace for recursive call + space taken by base condition
      */
     public static int gcdByEuclideanFormula(int n1, int n2) {
