@@ -43,7 +43,7 @@ class PrimeNumberTest {
         @Test
         void shouldCheckForLargeIntAsPrime() {
             var output = PrimeNumber.isPrime(100000001);
-            System.out.println(output);
+
             assertFalse(output);
         }
     }
@@ -84,6 +84,65 @@ class PrimeNumberTest {
         @Test
         void shouldCheckForLargeIntAsPrime() {
             var output = PrimeNumber.isPrimeByOnlyCheckingIfRemainderZero(100000001);
+
+            assertFalse(output);
+        }
+    }
+
+    @Nested
+    class isPrimeByRuleOf6Algorithm {
+        @Test
+        void shouldNotDetermine0AsPrime(){
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(0);
+
+            assertFalse(output);
+        }
+
+        @Test
+        void shouldNotDetermine1AsPrime(){
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(1);
+
+            assertFalse(output);
+        }
+
+        @Test
+        void shouldDetermine2AsPrime() {
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(2);
+
+            assertTrue(output);
+        }
+
+        @Test
+        void shouldDetermine3AsPrime() {
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(3);
+
+            assertTrue(output);
+        }
+
+        @Test
+        void shouldDetermine5AsPrime() {
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(5);
+
+            assertTrue(output);
+        }
+
+        @Test
+        void shouldNotDetermine25AsPrime() {
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(25);
+
+            assertFalse(output);
+        }
+
+        @Test
+        void shouldNotDetermine49AsPrime() {
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(49);
+
+            assertFalse(output);
+        }
+
+        @Test
+        void shouldCheckForLargeIntAsPrime() {
+            var output = PrimeNumber.isPrimeByRuleOf6Algorithm(100000001);
 
             assertFalse(output);
         }
