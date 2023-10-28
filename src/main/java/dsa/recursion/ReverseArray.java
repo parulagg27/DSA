@@ -1,5 +1,10 @@
 package dsa.recursion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class ReverseArray {
 
     /**
@@ -47,6 +52,20 @@ public class ReverseArray {
             end--;
         }
         return nums;
+    }
+
+    /**
+     * Approach: Use java Collections.reverse method and convert int[] to List<Integer>
+     * Time Complexity: O(n) - Collections.reverse() reverses in O(n) time.
+     * Space Complexity: O(n) -  since creating a new arrayList
+     */
+    public static int[] reverseArrayByCollectionMethod(int n, int[] nums) {
+        List<Integer> numberList = new ArrayList<>();
+        for(int number: nums){
+            numberList.add(number);
+        }
+        Collections.reverse(numberList);
+        return numberList.stream().mapToInt(i -> i).toArray();
     }
 
     /**
