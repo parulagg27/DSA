@@ -52,7 +52,6 @@ public class PalindromeWithSpecialChars {
      * Time complexity: O(n) - Beats 99.39% users. n/2 time since traversing half of string
      * Space complexity: O(1) - Beats 81.87% users. Taking constant memory space for traversal.
      */
-
     public static boolean isPalindromeByHalfTraversalAndNoRegex(String sequence) {
         int start = 0;
         int end = sequence.length() - 1;
