@@ -31,7 +31,7 @@ class FibonacciTest {
         }
 
         @Test
-        void get100thFibonacciNumber() {
+        void get46thFibonacciNumber() {
             var output = Fibonacci.fib(46);
 
             Assertions.assertEquals(1836311903, output);
@@ -63,7 +63,7 @@ class FibonacciTest {
         }
 
         @Test
-        void get100thFibonacciNumber() {
+        void get46thFibonacciNumber() {
             //TODO: Max. fibonacci number that can be computed by this approach
             var output = Fibonacci.fibonacciByLoop(46);
 
@@ -71,4 +71,35 @@ class FibonacciTest {
         }
     }
 
+    @Nested
+    class FibonacciWithMemoizationAndMemoryOptimisation {
+        @Test
+        void getZerothFibonacciNumber() {
+            var output = Fibonacci.fibonacciWithMemoizationAndMemoryOptimisation(0);
+
+            Assertions.assertEquals(0, output);
+        }
+
+        @Test
+        void getFirstFibonacciNumber() {
+            var output = Fibonacci.fibonacciWithMemoizationAndMemoryOptimisation(1);
+
+            Assertions.assertEquals(1, output);
+        }
+
+        @Test
+        void getFifthFibonacciNumber() {
+            var output = Fibonacci.fibonacciWithMemoizationAndMemoryOptimisation(5);
+
+            Assertions.assertEquals(5, output);
+        }
+
+        @Test
+        void get46thFibonacciNumber() {
+            //TODO: Max. fibonacci number that can be computed by this approach
+            var output = Fibonacci.fibonacciWithMemoizationAndMemoryOptimisation(46);
+
+            Assertions.assertEquals(1836311903, output);
+        }
+    }
 }

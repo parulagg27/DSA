@@ -18,4 +18,16 @@ public class Fibonacci {
         }
         return fibonacci[n];
     }
+
+    public static int fibonacciWithMemoizationAndMemoryOptimisation(int n){
+        if (n == 0 || n == 1) return n;
+        int secondLastFibonacci = 0;
+        int lastFibonacci = 1;
+        for (int i = 2; i <= n; i++){
+            int temp = lastFibonacci + secondLastFibonacci;
+            secondLastFibonacci = lastFibonacci;
+            lastFibonacci = temp;
+        }
+        return lastFibonacci;
+    }
 }
