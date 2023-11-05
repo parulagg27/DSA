@@ -49,7 +49,7 @@ public class Armstrong {
 
     /**
      * Time complexity: O(log10(n)) = O(k) where k is digit count. k = log(n) + 1
-     * Space complexity: O(log10(n)) = O(k) where k is digit count.
+     * Space complexity: O(n) since we are creating new string of same size as input.
      */
     public static boolean determineArmstrongByCharArray(int number) {
         if (number == 0 || number == 1) return true;
