@@ -1,5 +1,6 @@
-package dsa.arrays;
+package dsa.arrays.uncompress;
 
+import dsa.arrays.uncompress.Uncompress;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package dsa.arrays;
+package dsa.arrays.uncompress;
 
 public class Uncompress {
 
