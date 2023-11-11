@@ -49,7 +49,7 @@ public class Anagrams {
     }
 
     /**
-     * Time complexity: O(n*logn). logn due to sorting + n due to iteration of entire string.
+     * Time complexity: O(n*logn). n*logn due to sorting + n due to iteration of entire string.
      * Space complexity: O(n + n), since 2 new charArrays are created. If input type: charArray, then space complexity: O(1)
      */
     public static boolean isAnagramViaSorting(String s1, String s2) {
