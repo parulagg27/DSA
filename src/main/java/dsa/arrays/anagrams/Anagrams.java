@@ -20,7 +20,7 @@ public class Anagrams {
         HashMap<Character, Integer> uniqueCharsFromS1 = getCharactersWithFrequency(s1);
         HashMap<Character, Integer> uniqueCharsFromS2 = getCharactersWithFrequency(s2);
 
-        return  (uniqueCharsFromS1.equals(uniqueCharsFromS2));
+        return (uniqueCharsFromS1.equals(uniqueCharsFromS2));
     }
 
     /**
@@ -32,18 +32,17 @@ public class Anagrams {
         s2 = s2.toLowerCase();
         if (s1.length() != s2.length()) return false;
         HashMap<Character, Integer> uniqueChars = new HashMap<>();
-        for (char letter: s1.toCharArray()) {
+        for (char letter : s1.toCharArray()) {
             if (uniqueChars.get(letter) == null) {
                 uniqueChars.put(letter, 1);
-            }
-            else uniqueChars.put(letter, uniqueChars.get(letter) + 1);
+            } else uniqueChars.put(letter, uniqueChars.get(letter) + 1);
         }
 
-        for (char letter: s2.toCharArray()) {
+        for (char letter : s2.toCharArray()) {
             if (uniqueChars.get(letter) == null) return false;
             else uniqueChars.put(letter, uniqueChars.get(letter) - 1);
         }
-        for(int count: uniqueChars.values()){
+        for (int count : uniqueChars.values()) {
             if (count != 0) return false;
         }
         return true;
@@ -63,19 +62,42 @@ public class Anagrams {
         Arrays.sort(s1CharArray);
         Arrays.sort(s2CharArray);
 
-        for (int i = 0; i < s1.length(); i++){
+        for (int i = 0; i < s1.length(); i++) {
             if (s1CharArray[i] != s2CharArray[i]) return false;
+        }
+        return true;
+    }
+
+    /**
+     * Assumption: String only contains upper & lower case alphabets where case can be ignored.
+     * Time complexity: O(n). n due to iteration of entire string.
+     * Space complexity: O(26) aka O(1), since we use array of constant size [26] which does not change on change of input string size
+     */
+    public static boolean isAnagramViaFrequencyCount(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        if (s1.length() != s2.length()) return false;
+        int[] charFrequency = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            char characterInS1 = s1.charAt(i);
+            char characterInS2 = s2.charAt(i);
+            charFrequency[characterInS1 - 'a']++;
+            charFrequency[characterInS2 - 'a']--;
+        }
+        for (int frequency : charFrequency) {
+            if (frequency != 0) return false;
         }
         return true;
     }
 
     private static HashMap<Character, Integer> getCharactersWithFrequency(String s1) {
         HashMap<Character, Integer> uniqueChars = new HashMap<>();
-        for (char letter: s1.toCharArray()) {
+        for (char letter : s1.toCharArray()) {
             if (uniqueChars.containsKey(letter)) {
                 uniqueChars.put(letter, uniqueChars.get(letter) + 1);
-            }
-            else uniqueChars.put(letter, 1);
+            } else uniqueChars.put(letter, 1);
         }
         return uniqueChars;
     }

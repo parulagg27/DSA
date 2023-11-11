@@ -98,4 +98,34 @@ class AnagramsTest {
             Assertions.assertFalse(output);
         }
     }
+
+    @Nested
+    class AnagramViaFrequencyCount {
+        @Test
+        void shouldDetermineRestfulFlusterAsAnagram(){
+            var output = Anagrams.isAnagramViaFrequencyCount("restful", "fluster");
+
+            Assertions.assertTrue(output);
+        }
+        @Test
+        void shouldDetermineCatsTocsAsAnagram(){
+            var output = Anagrams.isAnagramViaFrequencyCount("cats", "tocs");
+
+            Assertions.assertFalse(output);
+        }
+
+        @Test
+        void shouldDetermineTwoStringsAsAnagramIgnoringCase(){
+            var output = Anagrams.isAnagramViaFrequencyCount("cats", "Cats");
+
+            Assertions.assertTrue(output);
+        }
+
+        @Test
+        void shouldDeterminePaperAndReapaAsNonAnagram(){
+            var output = Anagrams.isAnagramViaFrequencyCount("paper", "reapa");
+
+            Assertions.assertFalse(output);
+        }
+    }
 }
