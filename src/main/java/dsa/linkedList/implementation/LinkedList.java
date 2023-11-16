@@ -19,6 +19,12 @@ public class LinkedList {
         }
     }
 
+    public static void printListRecursively(Node head){
+        if (head == null) return;
+        System.out.println(head.value);
+        printListRecursively(head.next);
+    }
+
     public static void main(String[] args) {
         Node<Integer> a = new Node<>(1);
         Node<Integer> b = new Node<>(5);
@@ -26,5 +32,6 @@ public class LinkedList {
         a.next = b;
         b.next = c;
         printList(a);
+        printListRecursively(a);
     }
 }
