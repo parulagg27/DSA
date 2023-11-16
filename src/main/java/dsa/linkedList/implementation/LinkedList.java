@@ -11,22 +11,20 @@ class Node<T> {
 }
 public class LinkedList {
 
+    public static void printList(Node head){
+        var current = head;
+        while (current != null){
+            System.out.println(current.value);
+            current = current.next;
+        }
+    }
+
     public static void main(String[] args) {
         Node<Integer> a = new Node<>(1);
-        System.out.println(a.value);
-        System.out.println(a.next);
-
         Node<Integer> b = new Node<>(5);
         Node<Integer> c = new Node<>(3);
         a.next = b;
         b.next = c;
-        System.out.println(a.next);
-        System.out.println(c.next);
-        System.out.println(b.value);
-        System.out.println(a.next.value);
-
-        Node<String> name1 = new Node<>("apple");
-        System.out.println(name1.value);
-        System.out.println(name1.next);
+        printList(a);
     }
 }
