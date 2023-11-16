@@ -1,10 +1,10 @@
 package dsa.linkedList.implementation;
 
-class Node {
-    int value;
-    Node next;
+class Node<T> {
+    T value;
+    Node<T> next;
 
-    Node(int value){
+    Node(T value){
         this.value = value;
         this.next = null;
     }
@@ -12,17 +12,21 @@ class Node {
 public class LinkedList {
 
     public static void main(String[] args) {
-        Node a = new Node(1);
+        Node<Integer> a = new Node<>(1);
         System.out.println(a.value);
         System.out.println(a.next);
 
-        Node b = new Node(5);
-        Node c = new Node(3);
+        Node<Integer> b = new Node<>(5);
+        Node<Integer> c = new Node<>(3);
         a.next = b;
         b.next = c;
         System.out.println(a.next);
         System.out.println(c.next);
         System.out.println(b.value);
         System.out.println(a.next.value);
+
+        Node<String> name1 = new Node<>("apple");
+        System.out.println(name1.value);
+        System.out.println(name1.next);
     }
 }
