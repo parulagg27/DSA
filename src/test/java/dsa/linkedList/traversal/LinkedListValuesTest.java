@@ -1,6 +1,7 @@
 package dsa.linkedList.traversal;
 
 import dsa.linkedList.Node;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -200,21 +201,21 @@ class LinkedListValuesTest {
 
         @Test
         void shouldReturnFalseIfLinkedListDoesntContainAnyNode() {
-            var output = LinkedListValues.linkedListFind(null, 1);
+            var output = LinkedListValues.findElement(null, 1);
 
             assertFalse(output);
         }
 
         @Test
         void shouldReturnFalseIfTargetValuePresentInLinkedListOfSize1() {
-            var output = LinkedListValues.linkedListFind(new Node<>(42), 100);
+            var output = LinkedListValues.findElement(new Node<>(42), 100);
 
             assertFalse(output);
         }
 
         @Test
         void shouldReturnTrueIfTargetValuePresentInLinkedListOfSize1() {
-            var output = LinkedListValues.linkedListFind(new Node<>(42), 42);
+            var output = LinkedListValues.findElement(new Node<>(42), 42);
 
             assertTrue(output);
         }
@@ -224,7 +225,7 @@ class LinkedListValuesTest {
             Node<String> node1 = new Node<>("jason");
             node1.next = new Node<>("july");
 
-            var output = LinkedListValues.linkedListFind(node1, "jason");
+            var output = LinkedListValues.findElement(node1, "jason");
 
             assertTrue(output);
         }
@@ -239,7 +240,7 @@ class LinkedListValuesTest {
             b.next = c;
             c.next = d;
 
-            var output = LinkedListValues.linkedListFind(a, "c");
+            var output = LinkedListValues.findElement(a, "c");
 
             assertTrue(output);
         }
@@ -254,7 +255,7 @@ class LinkedListValuesTest {
             b.next = c;
             c.next = d;
 
-            var output = LinkedListValues.linkedListFind(a, "q");
+            var output = LinkedListValues.findElement(a, "q");
 
             assertFalse(output);
         }
@@ -265,14 +266,14 @@ class LinkedListValuesTest {
 
         @Test
         void shouldReturnFalseIfTargetValuePresentInLinkedListOfSize1() {
-            var output = LinkedListValues.linkedListRecursively(new Node<>(42), 100);
+            var output = LinkedListValues.findElementRecursively(new Node<>(42), 100);
 
             assertFalse(output);
         }
 
         @Test
         void shouldReturnTrueIfTargetValuePresentInLinkedListOfSize1() {
-            var output = LinkedListValues.linkedListRecursively(new Node<>(42), 42);
+            var output = LinkedListValues.findElementRecursively(new Node<>(42), 42);
 
             assertTrue(output);
         }
@@ -282,7 +283,7 @@ class LinkedListValuesTest {
             Node<String> node1 = new Node<>("jason");
             node1.next = new Node<>("july");
 
-            var output = LinkedListValues.linkedListRecursively(node1, "jason");
+            var output = LinkedListValues.findElementRecursively(node1, "jason");
 
             assertTrue(output);
         }
@@ -297,7 +298,7 @@ class LinkedListValuesTest {
             b.next = c;
             c.next = d;
 
-            var output = LinkedListValues.linkedListRecursively(a, "c");
+            var output = LinkedListValues.findElementRecursively(a, "c");
 
             assertTrue(output);
         }
@@ -312,9 +313,127 @@ class LinkedListValuesTest {
             b.next = c;
             c.next = d;
 
-            var output = LinkedListValues.linkedListRecursively(a, "q");
+            var output = LinkedListValues.findElementRecursively(a, "q");
 
             assertFalse(output);
+        }
+    }
+    
+    @Nested
+    class GetNodeValue {
+
+        @Test
+        void shouldGet3rdElementInLinkedListOfSize4() {
+            Node<String> a = new Node<>("a");
+            Node<String> b = new Node<>("b");
+            Node<String> c = new Node<>("c");
+            Node<String> d = new Node<>("d");
+            a.next = b;
+            b.next = c;
+            c.next = d;
+
+            var output = LinkedListValues.getNodeValue(a, 2);
+
+            assertEquals("c", output);
+        }
+
+        @Test
+        void shouldGetLastElementInLinkedList() {
+            Node<String> a = new Node<>("a");
+            Node<String> b = new Node<>("b");
+            Node<String> c = new Node<>("c");
+            Node<String> d = new Node<>("d");
+            a.next = b;
+            b.next = c;
+            c.next = d;
+
+            var output = LinkedListValues.getNodeValue(a, 3);
+
+            assertEquals("d", output);
+        }
+
+        @Test
+        void shouldReturnNullIfLinkedListSmallerThanIndexGiven() {
+            Node<String> a = new Node<>("a");
+            Node<String> b = new Node<>("b");
+            Node<String> c = new Node<>("c");
+            Node<String> d = new Node<>("d");
+            a.next = b;
+            b.next = c;
+            c.next = d;
+
+            var output = LinkedListValues.getNodeValue(a, 7);
+
+            assertNull(output);
+        }
+
+        @Test
+        void shouldGetValueAtZerothIndexOfLinkedList() {
+            Node<String> node1 = new Node<>("banana");
+            node1.next = new Node<>("mango");
+
+            var output = LinkedListValues.getNodeValue(node1, 0);
+
+            assertEquals("banana", output);
+        }
+    }
+
+    @Nested
+    class GetNodeValueRecursively {
+
+        @Test
+        void shouldGet3rdElementInLinkedListOfSize4() {
+            Node<String> a = new Node<>("a");
+            Node<String> b = new Node<>("b");
+            Node<String> c = new Node<>("c");
+            Node<String> d = new Node<>("d");
+            a.next = b;
+            b.next = c;
+            c.next = d;
+
+            var output = LinkedListValues.getNodeValueRecursively(a, 2);
+
+            assertEquals("c", output);
+        }
+
+        @Test
+        void shouldGetLastElementInLinkedList() {
+            Node<String> a = new Node<>("a");
+            Node<String> b = new Node<>("b");
+            Node<String> c = new Node<>("c");
+            Node<String> d = new Node<>("d");
+            a.next = b;
+            b.next = c;
+            c.next = d;
+
+            var output = LinkedListValues.getNodeValueRecursively(a, 3);
+
+            assertEquals("d", output);
+        }
+
+        @Test
+        void shouldReturnNullIfLinkedListSmallerThanIndexGiven() {
+            Node<String> a = new Node<>("a");
+            Node<String> b = new Node<>("b");
+            Node<String> c = new Node<>("c");
+            Node<String> d = new Node<>("d");
+            a.next = b;
+            b.next = c;
+            c.next = d;
+
+            var output = LinkedListValues.getNodeValueRecursively(a, 7);
+
+            assertNull(output);
+        }
+
+        @Test
+        void shouldGetValueAtZerothIndexOfLinkedList() {
+            Node<String> node1 = new Node<>("banana");
+            node1.next = new Node<>("mango");
+
+            var output = LinkedListValues.getNodeValueRecursively(node1, 0);
+
+            assertEquals("banana", output);
         }
     }
 }

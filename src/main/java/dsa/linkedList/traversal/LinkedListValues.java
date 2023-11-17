@@ -57,7 +57,7 @@ public class LinkedListValues {
      * @Time_complexity O(n): traversing entire list
      * @Space_complexity O(1): constant space used with increasing list size
      */
-    public static <T> boolean linkedListFind(Node<T> head, T target) {
+    public static <T> boolean findElement(Node<T> head, T target) {
         Node<T> current = head;
         while (current != null) {
             if (target == current.value) return true;
@@ -70,10 +70,40 @@ public class LinkedListValues {
      * @Time_complexity O(n)
      * @Space_complexity O(n)
      */
-    public static <T> boolean linkedListRecursively(Node<T> head, T target) {
+    public static <T> boolean findElementRecursively(Node<T> head, T target) {
         if (head == null) return false;
         if (head.value == target) return true;
-        return linkedListRecursively(head.next, target);
+        return findElementRecursively(head.next, target);
+    }
+
+    /**
+     * @Time_complexity O(n): traversing entire list
+     * @Space_complexity O(1): constant space used with increasing list size
+     */
+    public static <T> T getNodeValue(Node<T> head, int targetIndex) {
+        if (targetIndex == 0) return head.value;
+        Node<T> current = head;
+        for (int i = 0; i <= targetIndex; i++) {
+            if (current == null) return null;
+            if (i != targetIndex) current = current.next; //only moving pointer till i reaches given index
+        }
+        return current.value;
+    }
+
+    public static <T> T getNodeValueRecursively(Node<T> head, int targetIndex) {
+        if (head == null) return null;
+        if (targetIndex == 0) return head.value;
+        return getNodeValueRecursively(head.next, targetIndex - 1);
+    }
+
+    /**
+     * @Time_complexity O(n)
+     * @Space_complexity O(n)
+     */
+    private static <T> T getNodeValueRecursively(Node<T> current, int targetIndex, int currentIndex) {
+        if (current == null) return null;
+        if (currentIndex == targetIndex) return current.value;
+        return getNodeValueRecursively(current.next, targetIndex, currentIndex + 1);
     }
 
     private static <T> List<T> valuesRecursive(Node<T> current, List<T> values) {
