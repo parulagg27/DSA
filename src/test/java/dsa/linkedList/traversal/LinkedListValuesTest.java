@@ -8,16 +8,18 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class LinkedListValuesTest {
 
     @Nested
-    class IterativeApproach {
+    class GetValuesIteratively {
 
         @Test
         void shouldReturnEmptyListIfLinkedListHasNoNodes() {
             var output = LinkedListValues.values(null);
 
-            Assertions.assertEquals(new ArrayList<>(), output);
+            assertEquals(new ArrayList<>(), output);
         }
 
         @Test
@@ -26,7 +28,7 @@ class LinkedListValuesTest {
 
             var output = LinkedListValues.values(head);
 
-            Assertions.assertEquals(List.of("a"), output);
+            assertEquals(List.of("a"), output);
         }
 
         @Test
@@ -41,7 +43,7 @@ class LinkedListValuesTest {
 
             var output = LinkedListValues.values(a);
 
-            Assertions.assertEquals(List.of("a", "b", "c", "d"), output);
+            assertEquals(List.of("a", "b", "c", "d"), output);
         }
 
         @Test
@@ -51,18 +53,18 @@ class LinkedListValuesTest {
 
             var output = LinkedListValues.values(x);
 
-            Assertions.assertEquals(List.of("x", "y"), output);
+            assertEquals(List.of("x", "y"), output);
         }
     }
 
     @Nested
-    class RecursiveApproach {
+    class GetValuesRecursively {
 
         @Test
         void shouldReturnEmptyListIfLinkedListHasNoNodes() {
             var output = LinkedListValues.valuesRecursive(null);
 
-            Assertions.assertEquals(new ArrayList<>(), output);
+            assertEquals(new ArrayList<>(), output);
         }
 
         @Test
@@ -71,7 +73,7 @@ class LinkedListValuesTest {
 
             var output = LinkedListValues.valuesRecursive(head);
 
-            Assertions.assertEquals(List.of("a"), output);
+            assertEquals(List.of("a"), output);
         }
 
         @Test
@@ -86,7 +88,7 @@ class LinkedListValuesTest {
 
             var output = LinkedListValues.valuesRecursive(a);
 
-            Assertions.assertEquals(List.of("a", "b", "c", "d"), output);
+            assertEquals(List.of("a", "b", "c", "d"), output);
         }
 
         @Test
@@ -96,7 +98,101 @@ class LinkedListValuesTest {
 
             var output = LinkedListValues.valuesRecursive(x);
 
-            Assertions.assertEquals(List.of("x", "y"), output);
+            assertEquals(List.of("x", "y"), output);
+        }
+    }
+
+    @Nested
+    class GetSumOfValuesIteratively {
+
+        @Test
+        void shouldReturnSumAsZeroIfNoNodePresentInLinkedList() {
+            var output = LinkedListValues.sumList(null);
+
+            assertEquals(0, output);
+        }
+
+        @Test
+        void shouldReturnValueOfHeadAsSumIfOnly1NodeInLinkedList() {
+            Node<Integer> head = new Node<>(10);
+
+            var output = LinkedListValues.sumList(head);
+
+            assertEquals(10, output);
+        }
+
+        @Test
+        void shouldReturnSumOfValuesOfAllNodesInLinkedList() {
+            Node<Integer> a = new Node<>(2);
+            Node<Integer> b = new Node<>(8);
+            Node<Integer> c = new Node<>(3);
+            Node<Integer> d = new Node<>(-1);
+            Node<Integer> e = new Node<>(7);
+            a.next = b;
+            b.next = c;
+            c.next = d;
+            d.next = e;
+
+            var output = LinkedListValues.sumList(a);
+
+            assertEquals(19, output);
+        }
+
+        @Test
+        void shouldReturnSumOfValuesGivenLinkedListOfSize2() {
+            Node<Integer> x = new Node<>(38);
+            x.next = new Node<>(4);
+
+            var output = LinkedListValues.sumList(x);
+
+            assertEquals(42, output);
+        }
+    }
+
+    @Nested
+    class GetSumOfValuesRecursively {
+
+        @Test
+        void shouldReturnSumAsZeroIfNoNodePresentInLinkedList() {
+            var output = LinkedListValues.sumListRecursive(null);
+
+            assertEquals(0, output);
+        }
+
+        @Test
+        void shouldReturnValueOfHeadAsSumIfOnly1NodeInLinkedList() {
+            Node<Integer> head = new Node<>(10);
+
+            var output = LinkedListValues.sumListRecursive(head);
+
+            assertEquals(10, output);
+        }
+
+        @Test
+        void shouldReturnSumOfValuesOfAllNodesInLinkedList() {
+            Node<Integer> a = new Node<>(2);
+            Node<Integer> b = new Node<>(8);
+            Node<Integer> c = new Node<>(3);
+            Node<Integer> d = new Node<>(-1);
+            Node<Integer> e = new Node<>(7);
+            a.next = b;
+            b.next = c;
+            c.next = d;
+            d.next = e;
+
+            var output = LinkedListValues.sumListRecursive(a);
+
+            assertEquals(19, output);
+        }
+
+        @Test
+        void shouldReturnSumOfValuesGivenLinkedListOfSize2() {
+            Node<Integer> x = new Node<>(38);
+            x.next = new Node<>(4);
+
+            var output = LinkedListValues.sumListRecursive(x);
+
+            assertEquals(42, output);
         }
     }
 }
