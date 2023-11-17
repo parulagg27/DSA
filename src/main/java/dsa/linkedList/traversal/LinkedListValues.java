@@ -11,9 +11,9 @@ public class LinkedListValues {
      * @Time_complexity O(n): traversing entire list
      * @Space_complexity O(n): size of valuesArray increases as per number of nodes in linked list
      */
-    public static List<String> values(Node<String> head) {
-        Node<String> current = head;
-        List<String> values = new ArrayList<>();
+    public static <T> List<T> values(Node<T> head) {
+        Node<T> current = head;
+        List<T> values = new ArrayList<>();
         while (current != null) {
             values.add(current.value);
             current = current.next;
@@ -25,8 +25,8 @@ public class LinkedListValues {
      * @Time_complexity O(n): traversing entire list
      * @Space_complexity O(n): size of valuesArray increases as per number of nodes in linked list
      */
-    public static List<String> valuesRecursive(Node<String> head) {
-        List<String> values = new ArrayList<>();
+    public static <T> List<T> valuesRecursive(Node<T> head) {
+        List<T> values = new ArrayList<>();
         return valuesRecursive(head, values);
     }
 
@@ -76,7 +76,7 @@ public class LinkedListValues {
         return linkedListRecursively(head.next, target);
     }
 
-    private static List<String> valuesRecursive(Node<String> current, List<String> values) {
+    private static <T> List<T> valuesRecursive(Node<T> current, List<T> values) {
         if (current == null) return values;
         values.add(current.value);
         current = current.next;
