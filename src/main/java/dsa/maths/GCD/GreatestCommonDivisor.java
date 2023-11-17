@@ -39,7 +39,7 @@ public class GreatestCommonDivisor {
             else n2 = n2 % n1;
         }
         if (n2 == 0) return n1;
-        return n1;
+        return n2;
     }
 
     /**
