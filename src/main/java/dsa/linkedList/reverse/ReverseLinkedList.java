@@ -7,6 +7,7 @@ public class ReverseLinkedList {
     /**
      * @Time_complexity O(n)
      * @Space_complexity O(1) - using constant space with increasing input size
+     * TODO: revisit this approach for visualisation of pointers movement
      */
     public static <T> Node<T> reverseList(Node<T> head) {
         Node<T> prev = null;
