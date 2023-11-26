@@ -48,4 +48,6 @@ public class ZipperLists {
         }
         return head1;
     }
+
+    //TODO: implement recursive approach
 }
