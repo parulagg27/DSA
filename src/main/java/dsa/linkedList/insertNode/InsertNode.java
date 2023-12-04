@@ -34,6 +34,15 @@ public class InsertNode {
         return insertNodeRecursive(head, head, value, index, 0);
     }
 
+    /**
+     * @Time_complexity O(n)
+     * @Space_complexity O(n)
+     * TODO: Revisit and visualize this approach again
+     */
+    public static <T> Node<T> insertNodeRecursiveSimplified(Node<T> head, T value, int index) {
+        return insertNodeRecursiveSimplified(head, null, value, index);
+    }
+
     private static <T> Node<T> insertNodeRecursive(Node<T> current, Node<T> head, T value, int index, int currentIndex) {
         if (index == 0) {
             Node<T> nodeToInsert = new Node<>(value);
@@ -48,5 +57,16 @@ public class InsertNode {
             return head;
         }
         return insertNodeRecursive(current.next, head, value, index, currentIndex + 1);
+    }
+
+    public static <T> Node<T> insertNodeRecursiveSimplified(Node<T> current, Node<T> prev, T value, int index) {
+        if (index == 0) {
+            Node<T> nodeToInsert = new Node<>(value);
+            nodeToInsert.next = current;
+            if (prev != null) prev.next = nodeToInsert;
+            return nodeToInsert;
+        }
+        current.next = insertNodeRecursiveSimplified(current.next, current, value, index - 1);
+        return current;
     }
 }
