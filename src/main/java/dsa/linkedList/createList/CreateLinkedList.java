@@ -9,6 +9,7 @@ public class CreateLinkedList {
     /**
      * @Time_complexity O(n)
      * @Space_complexity O(n)
+     * TODO: simplify this approach without using i and values size approach
      */
     public static <T> Node<T> createList(List<T> values) {
         if (values.isEmpty()) return null;
