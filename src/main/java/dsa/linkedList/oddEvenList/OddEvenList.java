@@ -4,6 +4,7 @@ import dsa.linkedList.Node;
 
 /**
  * Problem statement link: <a href="https://leetcode.com/problems/odd-even-linked-list/description/">...</a>
+ * Time taken: 1 hour
  */
 public class OddEvenList {
 
