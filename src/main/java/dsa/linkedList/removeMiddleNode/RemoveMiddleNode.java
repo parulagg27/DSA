@@ -4,6 +4,7 @@ import dsa.linkedList.Node;
 
 /**
  * Problem description: <a href="https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description">...</a>
+ * Time taken: 20 min
  */
 public class RemoveMiddleNode {
 
@@ -23,6 +24,28 @@ public class RemoveMiddleNode {
             index++;
         }
         prev.next = current.next;
+        return head;
+    }
+
+    /**
+     * @Time_complexity O(n) - actual n/2 - since slow & fast pointer reduce number of nodes traversed to half
+     * @Space_complexity O(1)
+     * Learnings:
+     * 1. How to traverse & find middle of linked list by half traversal using slow & fast pointer
+     * 2. Here, slow points to previous node of middle node
+     * 3. To properly delete node, not just skip it, set: slow.next.next [i.e. nodes reference] to be null.
+     * If this is not done explicitly, GC takes care of it to remove object with no reference.
+     */
+    public static <T> Node<T> deleteMiddleBySlowFastPointer(Node<T> head) {
+        if (head == null || head.next == null) return null;
+        Node<T> slow = head;
+        Node<T> fast = head.next.next;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow.next = slow.next.next;
         return head;
     }
 
