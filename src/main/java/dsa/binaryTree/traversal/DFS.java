@@ -28,29 +28,4 @@ public class DFS {
         }
         return nodesInDfsOrder;
     }
-
-    /**
-     * @Time_complexity O(n)
-     * @Space_complexity O(max depth of binary tree) -
-     * O(n) - worst case : for left skewed or right-skewed binary tree
-     * O(log n) - for balanced binary tree
-     */
-    public static <T> List<T> inorderDepthFirstByStack(Node<T> root) {
-        if (root == null) return List.of();
-        Stack<Node<T>> nodeStack = new Stack<>();
-        Node<T> current = root;
-        List<T> inorderElements = new ArrayList<>();
-
-        while (current != null || !nodeStack.isEmpty()) {
-            if (current != null) {
-                nodeStack.push(current);
-                current = current.left;
-            } else {
-                Node<T> top = nodeStack.pop();
-                inorderElements.add(top.value);
-                current = top.right;
-            }
-        }
-        return inorderElements;
-    }
 }
