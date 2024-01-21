@@ -6,11 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * L-N-R traversal.
+ * Traverse tree straight from Left to Right.
+ */
 public class InOrderDFS {
 
     /**
-     * Current pointer + stack used. Current pointer to track left sub-tree first, then right sub-tree. Stack to come back to previous node.
-     *
+     * Current pointer + stack used. Current pointer to track left subtree first, then right subtree. Stack to come back to previous node.
      * @Time_complexity O(n)
      * @Space_complexity O(max depth of binary tree) -
      * O(n) - worst case : for left skewed or right-skewed binary tree
