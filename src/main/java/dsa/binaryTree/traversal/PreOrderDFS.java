@@ -34,18 +34,18 @@ public class PreOrderDFS {
         return nodesInDfsOrder;
     }
 
-    public static <T> List<T> preOrderDFSByRecursion(Node<T> root) {
-        List<T> preOrderValues = new ArrayList<>();
-        preOrderDFSByRecursion(root, preOrderValues);
-        return preOrderValues;
-    }
-
     /**
      * @Time_complexity O(n) - since every node has to be traversed.
      * @Space_complexity O(max.depth of tree)
      * - best case (balanced tree) - O(log n)
      * - worst case (left / right skewed tree) - O(n)
      */
+    public static <T> List<T> preOrderDFSByRecursion(Node<T> root) {
+        List<T> preOrderValues = new ArrayList<>();
+        preOrderDFSByRecursion(root, preOrderValues);
+        return preOrderValues;
+    }
+
     private static <T> void preOrderDFSByRecursion(Node<T> current, List<T> elements) {
         if (current == null) return;
         elements.add(current.value);

@@ -25,10 +25,40 @@ public class PostOrderDFS {
             if (top.left != null) leftRightNodeTracker.push(top.left);
             if (top.right != null) leftRightNodeTracker.push(top.right);
         }
-        while (!postOrdered.isEmpty()){
+        while (!postOrdered.isEmpty()) {
             postOrderOutput.add(postOrdered.pop().value);
         }
         return postOrderOutput;
+    }
+
+    /**
+     * Video reference: <a href="https://youtu.be/xLQKdq0Ffjg?feature=shared">...</a>
+     * @Time_complexity O(n)
+     * @Space_complexity O(max. depth of tree): O(log n) - O(n)
+     */
+    public static <T> List<T> postOrderByOneStack(Node<T> root) {
+        Node<T> current = root;
+        Stack<Node<T>> postOrderStack = new Stack<>();
+        List<T> postOrderElements = new ArrayList<>();
+
+        while (current != null || !postOrderStack.isEmpty()) {
+            if (current != null) {
+                postOrderStack.push(current);
+                current = current.left;
+            } else {
+                var temp = postOrderStack.peek().right;
+                if (temp != null) current = temp;
+                else {
+                    var top = postOrderStack.pop();
+                    postOrderElements.add(top.value);
+                    while (!postOrderStack.isEmpty() && top == postOrderStack.peek().right) {
+                        top = postOrderStack.pop();
+                        postOrderElements.add(top.value);
+                    }
+                }
+            }
+        }
+        return postOrderElements;
     }
 
     public static <T> List<T> postOrderByRecursion(Node<T> root) {
