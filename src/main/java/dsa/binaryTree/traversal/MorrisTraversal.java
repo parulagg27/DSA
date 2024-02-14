@@ -70,10 +70,46 @@ public class MorrisTraversal {
         return inorderNodes;
     }
 
+    /**
+     * Print if:
+     * a) Left child is null, print current
+     * b) Thread is created, print current [root]
+     * Move to right if:
+     * a) Left node is null
+     * b) Right most node == current node, i.e. when thread to be broken, which indicates that left-subtree is done.
+     * @Time_complexity O(n). Internally - O(3n) since each node is traversed thrice on an average.
+     * @Space_complexity O(1) -> constant auxiliary space [2 pointers] used for processing nodes.
+     */
+    public static <T> List<T> preOrder(Node<T> root) {
+        List<T> preOrderValues = new ArrayList<>();
+        if (root == null) return preOrderValues;
+        Node<T> current = root;
+        while (current != null) {
+            Node<T> left = current.left;
+            if (left == null) {
+                preOrderValues.add(current.value);
+               current = current.right;
+            } else {
+               Node<T> rightMostNode = findRightMostNode(left, current);
+               if (rightMostNode.right == null) { //thread creation
+                   preOrderValues.add(current.value);
+                   rightMostNode.right = current;
+                   current = current.left;
+               } else if (rightMostNode.right == current) { //thread cut down
+                   rightMostNode.right = null;
+                   current = current.right;
+               }
+            }
+        }
+        return preOrderValues;
+    }
+
     private static <T> Node<T> findRightMostNode(Node<T> leftNode, Node<T> current) {
         while (leftNode.right != null && leftNode.right != current) {
             leftNode = leftNode.right;
         }
         return leftNode;
     }
+
+    
 }
