@@ -47,12 +47,12 @@ public class PostOrderDFS {
                 current = current.left;
             } else {
                 var temp = postOrderStack.peek().right;
-                if (temp != null) current = temp;
+                if (temp != null) current = temp; //left subtree done, move to right
                 else {
                     var top = postOrderStack.pop();
-                    postOrderElements.add(top.value);
+                    postOrderElements.add(top.value); //visit node if leaf node
                     while (!postOrderStack.isEmpty() && top == postOrderStack.peek().right) {
-                        top = postOrderStack.pop();
+                        top = postOrderStack.pop(); // visit root of tree as right subtree done
                         postOrderElements.add(top.value);
                     }
                 }
