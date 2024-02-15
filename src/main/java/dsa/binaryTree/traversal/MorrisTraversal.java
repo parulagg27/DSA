@@ -40,6 +40,7 @@ public class MorrisTraversal {
 
     /**
      * Video context: <a href="https://youtu.be/oz17ihxBxgU">...</a>
+     *
      * @Time_complexity O(n). Internally - O(3n) since each node is traversed thrice on an average.
      * @Space_complexity O(1) -> constant auxiliary space [2 pointers] used for processing nodes.
      */
@@ -54,17 +55,17 @@ public class MorrisTraversal {
                 inorderNodes.add(current.value);
                 current = current.right;
             } else {
-              Node<T> rightMostNode = findRightMostNode(left, current);
-              if (rightMostNode.right == null) {
-                  //create thread
-                  rightMostNode.right = current;
-                  current = current.left;
-              } else {
-                  //break thread
-                  rightMostNode.right = null;
-                  inorderNodes.add(current.value);
-                  current = current.right;
-              }
+                Node<T> rightMostNode = findRightMostNode(left, current);
+                if (rightMostNode.right == null) {
+                    //create thread
+                    rightMostNode.right = current;
+                    current = current.left;
+                } else {
+                    //break thread
+                    rightMostNode.right = null;
+                    inorderNodes.add(current.value);
+                    current = current.right;
+                }
             }
         }
         return inorderNodes;
@@ -77,6 +78,7 @@ public class MorrisTraversal {
      * Move to right if:
      * a) Left node is null
      * b) Right most node == current node, i.e. when thread to be broken, which indicates that left-subtree is done.
+     *
      * @Time_complexity O(n). Internally - O(3n) since each node is traversed thrice on an average.
      * @Space_complexity O(1) -> constant auxiliary space [2 pointers] used for processing nodes.
      */
@@ -88,20 +90,57 @@ public class MorrisTraversal {
             Node<T> left = current.left;
             if (left == null) {
                 preOrderValues.add(current.value);
-               current = current.right;
+                current = current.right;
             } else {
-               Node<T> rightMostNode = findRightMostNode(left, current);
-               if (rightMostNode.right == null) { //thread creation
-                   preOrderValues.add(current.value);
-                   rightMostNode.right = current;
-                   current = current.left;
-               } else if (rightMostNode.right == current) { //thread cut down
-                   rightMostNode.right = null;
-                   current = current.right;
-               }
+                Node<T> rightMostNode = findRightMostNode(left, current);
+                if (rightMostNode.right == null) { //thread creation
+                    preOrderValues.add(current.value);
+                    rightMostNode.right = current;
+                    current = current.left;
+                } else if (rightMostNode.right == current) { //thread cut down
+                    rightMostNode.right = null;
+                    current = current.right;
+                }
             }
         }
         return preOrderValues;
+    }
+
+    /**
+     * 1. Symmetrically opposite of preorder morris traversal, i.e., NLR --> NRL
+     * 2. Then reverse the resulting list, i.e., NRL --> LRN
+     * Visit left if:
+     *  a) Right == null
+     *  b) Thread is broken
+     * Print node if:
+     * a) Thread is created [root node]
+     * b) right node is null
+     *
+     * @Time_complexity O(n) + O(n/2) [to reverse array]
+     * @Space_complexity O(1) - no auxiliary space used + array reversed in place.
+     */
+    public static <T> List<T> postOrder(Node<T> root) {
+        List<T> nRLElements = new ArrayList<>();
+        if (root == null) return nRLElements;
+        Node<T> current = root;
+        while (current != null) {
+            Node<T> right = current.right;
+            if (right == null) {
+                nRLElements.add(current.value); //visit node if right subtree done
+                current = current.left;
+            } else {
+                Node<T> leftMostNode = findLeftMostNode(right, current);
+                if (leftMostNode.left == null) {
+                    leftMostNode.left = current;
+                    nRLElements.add(current.value); //visit node if thread created: indicating root node
+                    current = current.right;
+                } else {
+                    leftMostNode.left = null;
+                    current = current.left;
+                }
+            }
+        }
+        return reverseArray(nRLElements);
     }
 
     private static <T> Node<T> findRightMostNode(Node<T> leftNode, Node<T> current) {
@@ -111,5 +150,21 @@ public class MorrisTraversal {
         return leftNode;
     }
 
-    
+    private static <T> Node<T> findLeftMostNode(Node<T> rightNode, Node<T> current) {
+        while (rightNode.left != null && rightNode.left != current){
+            rightNode = rightNode.left;
+        }
+        return rightNode;
+    }
+
+    private static <T> List<T> reverseArray(List<T> elements) {
+        int size = elements.size();
+        for (int i = 0; i < size / 2; i++) {
+            int compliment = size - i - 1;
+            T temp = elements.get(i);
+            elements.set(i, elements.get(compliment));
+            elements.set(compliment, temp);
+        }
+        return elements;
+    }
 }
