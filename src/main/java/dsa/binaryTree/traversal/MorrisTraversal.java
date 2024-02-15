@@ -107,6 +107,7 @@ public class MorrisTraversal {
     }
 
     /**
+     * Reference: <a href="https://stackoverflow.com/a/56682968/14856868">...</a>
      * 1. Symmetrically opposite of preorder morris traversal, i.e., NLR --> NRL
      * 2. Then reverse the resulting list, i.e., NRL --> LRN
      * Visit left if:
