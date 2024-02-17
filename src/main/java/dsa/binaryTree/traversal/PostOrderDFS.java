@@ -45,6 +45,7 @@ public class PostOrderDFS {
             if (current != null) {
                 postOrderStack.push(current);
                 current = current.left;
+
             } else {
                 var temp = postOrderStack.peek().right;
                 if (temp != null) current = temp; //left subtree done, move to right
