@@ -1,6 +1,5 @@
-package dsa.binaryTree.RootToLeafPath;
+package dsa.binaryTree;
 
-import dsa.binaryTree.Node;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,4 @@
-package dsa.binaryTree.RootToLeafPath;
-
-import dsa.binaryTree.Node;
+package dsa.binaryTree;
 
 import java.util.ArrayList;
 import java.util.List;
