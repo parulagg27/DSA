@@ -12,7 +12,7 @@ public class LevelElements {
 
     /**
      * Approach: Use BFS via Queue + null node to represent completion of each level in tree.
-     *
+     * Space wise better approach: Instead of assigning extra space to store level info for each node, we store null node to indicate one level.
      * @Time_complexity O(n)
      * @Space_complexity O(h) [height of tree] + number of levels in tree [for space taken by null nodes]
      */
@@ -72,6 +72,24 @@ public class LevelElements {
             if (node.right != null) stack.add(new SimpleEntry<>(level + 1, node.right));
             if (node.left != null) stack.add(new SimpleEntry<>(level + 1, node.left));
         }
+        return levels;
+    }
+
+    public static <T> List<List<T>> treeLevelsByRecursion(Node<T> root) {
+        return treeLevelsByRecursion(root, 0, new ArrayList<>());
+    }
+
+    private static <T> List<List<T>> treeLevelsByRecursion(Node<T> root, int level, List<List<T>> levels) {
+        if (root == null) return List.of();
+        if (level == levels.size()) {
+            List<T> levelElement = new ArrayList<>();
+            levelElement.add(root.value);
+            levels.add(levelElement);
+        } else {
+            levels.get(level).add(root.value);
+        }
+        treeLevelsByRecursion(root.left, level + 1, levels);
+        treeLevelsByRecursion(root.right, level + 1, levels);
         return levels;
     }
 }
