@@ -6,8 +6,8 @@ import java.util.Queue;
 public class HeightOfTree {
 
     /**
-     * @Time_complexity O(n)
-     * @Space_complexity O(h) - h: height of binary tree
+     * @Time_complexity O(n) - Beats 100% users
+     * @Space_complexity O(h) - h: height of binary tree - Beats 64% users
      */
     public static <T> int howHigh(Node<T> root) {
         if (root == null) return -1;
@@ -18,8 +18,8 @@ public class HeightOfTree {
     /**
      * Approach: To mark completion of a level in level-order, we add null nodes to the queue.
      * So everytime, null node is encountered, it indicates: that level is done, moving to next level.
-     * @Time_complexity O(n)
-     * @Space_complexity O(n) - O(h + h) - extra space used for number of null nodes = height of tree
+     * @Time_complexity O(n) - Beats 11% users
+     * @Space_complexity O(n) - O(h + h) - extra space used for number of null nodes = height of tree - beats 94% users
      */
     public static <T> int heightViaLevelOrder(Node<T> root) {
         int height = -1;
