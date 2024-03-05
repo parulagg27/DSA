@@ -11,6 +11,10 @@ Given givenTime = "2?:?8", and referenceTime = "23:57" the function should retur
  */
 public class MissingTimeDigits {
 
+    /**
+     * @Time_complexity O(1) - 1440 cases
+     * @Space_complexity O(1) - constant auxiliary space used
+     */
     public String nearestTime(String givenTime, String referenceTime) {
         if (!givenTime.contains("?")) return givenTime;
         if (givenTime.contains("??:??")) return referenceTime;
