@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
 
+/**
+ * Problem statement: Given an object representing the adjacency list of a directed acyclic graph and two nodes (src, dst).
+ *  return a boolean indicating whether there exists a directed path between the source and destination nodes
+ */
 public class hasPath {
 
     /**
