@@ -14,8 +14,32 @@ public class undirectedGraphTraversal {
         return dfsWithCycles(graph, nodeA, nodeB, visitedNodes);
     }
 
+    public static boolean undirectedPathWithEdgeList(List<List<String>> edges, String nodeA, String nodeB) {
+        List<String> visitedNodes = new ArrayList<>();
+        return undirectedPathWithEdgeList(edges, nodeA, nodeB, visitedNodes);
+    }
+
     /**
-     * @Time_complexity O(e)
+     * @Time_complexity O(E * V) - E -> since iterating over each edge. V -> Since recursive call happens v-times, i.e., each node visited atmost once
+     * @Space_complexity O(2V) -> O(V) : Since recursive stack visiting each node once + visited nodes array
+     */
+    private static boolean undirectedPathWithEdgeList(List<List<String>> edges, String nodeA, String nodeB, List<String> visited) {
+        if (nodeA.equals(nodeB)) return true;
+        if (visited.contains(nodeA)) return false;
+        visited.add(nodeA);
+        for (List<String> edge: edges) { // time -> O(E)
+            if (edge.contains(nodeA)){
+                String neighbour = edge.get(0).equals(nodeA) ? edge.get(1) : edge.get(0);
+                if (undirectedPathWithEdgeList(edges, neighbour, nodeB, visited)) { //visit nodes at-most once -> avoiding cycles -> O(V)
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @Time_complexity O(e + n) - because we visit each node + it's outgoing edges. Actual time is less since early exit if node found
      * @Space_complexity O(n) + O(n) [for visited nodes]
      */
     private static boolean dfsWithCycles(Map<String, List<String>> graph,
