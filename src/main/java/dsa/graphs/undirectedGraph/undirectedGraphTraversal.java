@@ -56,6 +56,9 @@ public class undirectedGraphTraversal {
         return false;
     }
 
+    /**
+     * @Time_complexity O(V+E) - for sparse graph
+     */
     private static boolean bfsWithCycle(Map<String, List<String>> graph, String src, String dst) {
         if (!graph.containsKey(src) || !graph.containsKey(dst)) return false;
         if (src.equals(dst)) return true;
