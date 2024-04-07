@@ -1,4 +1,4 @@
-package dsa.graphs;
+package dsa.graphs.islands;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
