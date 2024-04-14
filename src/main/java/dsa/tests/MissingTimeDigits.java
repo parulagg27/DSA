@@ -1,4 +1,4 @@
-package dsa.mockInterviews;
+package dsa.tests;
 
 /*
 Given two times (in 24-hour format), one with missing digits marked as '?', and the other with no missing digits,
